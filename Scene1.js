@@ -66,6 +66,8 @@ class Scene1 extends Phaser.Scene {
       this.load.spritesheet('vx', 'assets/vxplode.png',{frameWidth:84, frameHeight: 93,});
       this.load.spritesheet('final', 'assets/final.png',{frameWidth:551, frameHeight: 300,});
       this.load.spritesheet('final2', 'assets/final2.png',{frameWidth:551, frameHeight: 300,});
+      this.load.spritesheet('finaln', 'assets/finalnena.png',{frameWidth:551, frameHeight: 300,});
+      this.load.spritesheet('finaln2', 'assets/finalnena2.png',{frameWidth:551, frameHeight: 300,});
       this.load.spritesheet('luz', 'assets/luz.png',{frameHeight:64, frameWidth:64});
 
     };
@@ -195,6 +197,16 @@ class Scene1 extends Phaser.Scene {
       this.anims.create({
         key: 'final2',
         frames: this.anims.generateFrameNumbers('final2',{start: 0, end: 28}),
+        frameRate: 10,
+      });
+      this.anims.create({
+        key: 'finaln',
+        frames: this.anims.generateFrameNumbers('finaln',{start: 0, end: 28}),
+        frameRate: 10,
+      });
+      this.anims.create({
+        key: 'finaln2',
+        frames: this.anims.generateFrameNumbers('finaln2',{start: 0, end: 28}),
         frameRate: 10,
       });
       this.anims.create({

@@ -374,6 +374,7 @@ class Scene8 extends Phaser.Scene{
                                 //* Video final
         this.physics.pause();
         luz=this.add.sprite(player.x,player.y-60,'luz').anims.play('luz',true).setScale(20.25).on('animationcomplete',()=>{luz.destroy();luzcont=1;if(luzcont===1){
+           if(seleccion=== 'nene'){
             videofinal = this.add.sprite(player.x-1000, 0, 'final').setOrigin(0,0).setScale(3);
             videofinal.anims.play('final',true).on('animationcomplete',()=> {videofinal.anims.play('final2', true)
             .on('animationcomplete', ()=> { //+FINAL DEL NIVEL 3 
@@ -382,6 +383,17 @@ class Scene8 extends Phaser.Scene{
                 plevel3 = puntos;
                 this.musicbackground.stop();
                 this.scene.start('puntos');} )});
+            };
+            if(seleccion=== 'nena'){
+                videofinal = this.add.sprite(player.x-1000, 0, 'finaln').setOrigin(0,0).setScale(3);
+                videofinal.anims.play('finaln',true).on('animationcomplete',()=> {videofinal.anims.play('finaln2', true)
+                .on('animationcomplete', ()=> { //+FINAL DEL NIVEL 3 
+                    victoria = 3;
+                    pausacont = 0;
+                    plevel3 = puntos;
+                    this.musicbackground.stop();
+                    this.scene.start('puntos');} )});
+                }
             this.add.image(0,0, 'madera').setOrigin(0,0).setScrollFactor(0);
         }});                       
         
