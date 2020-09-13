@@ -3,75 +3,6 @@ class Scene1 extends Phaser.Scene {
       super('inicio');
     }
 
-    preload ()
-    {
-      
-      this.load.image('logo', 'assets/logo.png');
-      this.load.image('sky', 'assets/sky.png');
-      this.load.image('ground', 'assets/platform.png');
-      this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 39, frameHeight:68 });
-      this.load.audio('jump', 'SFX/Jump.wav');
-      this.load.audio('music', 'SFX/music.wav');
-      this.load.audio('musicmenu', 'SFX/MenuPrincipal.wav');
-      this.load.audio('character','SFX/character.wav');
-      this.load.audio('gameover', 'SFX/GameOver.wav');
-      this.load.audio('scorewin', 'SFX/ScoreWin.wav');
-      this.load.audio('scoreloose', 'SFX/ScoreGameOver.wav');
-      this.load.audio('music2', 'SFX/music2.wav');
-      this.load.audio('music3', 'SFX/music3.wav');
-      this.load.audio('aplastar', 'SFX/aplastar.wav');
-      this.load.image('basura', 'assets/basura.png');
-      this.load.image('salto', 'assets/salto.png');
-      this.load.image('alcohol', 'assets/alcohol.png');
-      this.load.image('infovirus', 'assets/info.png');
-      this.load.image('madera', 'assets/madera.png');
-      this.load.image('escuela', 'assets/escuela.png');
-      this.load.image('creditos', 'assets/creditos.png');
-      this.load.image('frase', 'assets/frase.png');
-      this.load.spritesheet('nena', 'assets/nenarun.png',{frameWidth: 50, frameHeight: 68});
-      this.load.image('saltonena', 'assets/saltonena.png');
-      this.load.image('sol', 'assets/sol.png');
-      this.load.image('nube', 'assets/nube.png');
-      this.load.bitmapFont('pixel', 'assets/pixelfont.png', 'assets/pixelfont.fnt');
-      this.load.image('pausafondo', 'assets/pausa.png');
-      this.load.image('pausamadera', 'assets/madera2.png');
-      this.load.image('sky2', 'assets/escenarioescuela.png');
-      this.load.image('ground2', 'assets/pisoescuela.png');
-      this.load.image('mochila', 'assets/mochila.png');
-      this.load.image('mochila2', 'assets/mochila2.png');
-      this.load.image('ventana', 'assets/ventana.png');
-      this.load.image('ventana2', 'assets/ventana2.png');
-      this.load.image('puerta', 'assets/puertaescuela.png');
-      this.load.image('instrucciones1', 'assets/instrucciones1.png');
-      this.load.image('instrucciones2', 'assets/instrucciones2.png');
-      this.load.image('instrucciones3', 'assets/instrucciones3.png');
-      this.load.image('cartel1,4' , 'assets/cartel1,4.png');
-      this.load.image('cartel1,1' , 'assets/cartel1,1.png');
-      this.load.image('cartel800' , 'assets/cartel800.png');
-      this.load.image('cartel500' , 'assets/cartel500.png');
-      this.load.image('cartel200' , 'assets/cartel200.png');
-      this.load.spritesheet('v1', 'assets/virus1.png',{frameWidth:107 ,frameHeight:115});
-      this.load.spritesheet('v2', 'assets/virus2.png',{frameWidth:107 ,frameHeight:115});
-      this.load.spritesheet('v3', 'assets/virus3.png',{frameWidth:107 ,frameHeight:115});
-      this.load.spritesheet('v4', 'assets/virus4.png',{frameWidth:107 ,frameHeight:115});
-      this.load.spritesheet('v5', 'assets/virus5.png',{frameWidth:107 ,frameHeight:115});
-      this.load.spritesheet('v6', 'assets/virus6.png',{frameWidth:107 ,frameHeight:115});
-      this.load.spritesheet('humovirus', 'assets/humovirus.png',{frameWidth:197 ,frameHeight:145});
-      this.load.image('fondo3', 'assets/fondo3.png');
-      this.load.image('cielo3', 'assets/cielo3.png');
-      this.load.image('paralax3', 'assets/paralax3.png');
-      this.load.image('hospital', 'assets/hospital.png');
-      this.load.spritesheet('jeringa', 'assets/jeringa.png',{frameWidth:108 ,frameHeight:406});
-      this.load.spritesheet('agua', 'assets/agua.png',{frameWidth:1800, frameHeight:1800});
-      this.load.spritesheet('vx', 'assets/vxplode.png',{frameWidth:84, frameHeight: 93,});
-      this.load.spritesheet('final', 'assets/final.png',{frameWidth:551, frameHeight: 300,});
-      this.load.spritesheet('final2', 'assets/final2.png',{frameWidth:551, frameHeight: 300,});
-      this.load.spritesheet('finaln', 'assets/finalnena.png',{frameWidth:551, frameHeight: 300,});
-      this.load.spritesheet('finaln2', 'assets/finalnena2.png',{frameWidth:551, frameHeight: 300,});
-      this.load.spritesheet('luz', 'assets/luz.png',{frameHeight:64, frameWidth:64});
-
-    };
-
     create() {
 
       ////musica principal
@@ -214,29 +145,41 @@ class Scene1 extends Phaser.Scene {
         frames: this.anims.generateFrameNumbers('luz',{start: 0, end: 16}),
         frameRate: 8,
       });
+      this.anims.create({
+        key: 'perro',
+        frames: this.anims.generateFrameNumbers('perro',{start: 0, end: 1}),
+        frameRate:3,
+        repeat: -1,
+      });
       
-
 
 
       this.add.image(400, 568, 'ground').setScale(1000).setTint(0x001a19);
+     
 
       ////COMENZAR, CONOCER MÁS y CRÉDITOS 
 
-      var logo = this.add.image(480, 250, 'logo').setScale(0.25)
-      timeText = this.add.bitmapText(420,600,'pixel', 'Comenzar', 32);
-      scoreText = this.add.bitmapText(270, 680,'pixel', 'Conoce mas sobre el virus', 32).setTint(0x3fad3b);
-      this.add.bitmapText(455, 655, 'pixel', ".",32).setTint(0x3fad3b);
-      creditosText = this.add.bitmapText(430, 760,'pixel', 'Creditos', 32).setTint(0xecd313);
-      this.add.bitmapText(485, 735, 'pixel', ".",32).setTint(0xecd313);
+      var logo = this.add.image(640, 250, 'logo').setScale(0.25)
+      //timeText = this.add.bitmapText(580,560,'pixel', 'Comenzar', 32);
+      español = 1;
+      timeText = new Texto({
+        scene:this,x:640, y:560, int:[0] , int2:32, color:0xffffff    
+      })
+      scoreText = new Texto({
+        scene:this,x:640, y:610, int:[1] , int2:32, color:0x3fad3b    
+      })
+      creditosText = scoreText = new Texto({
+        scene:this,x:640, y:660, int:[2] , int2:32, color:0xecd313  
+      })
       
       //// Interacciones con escenas
-      timeText.setInteractive();
-      timeText.on('pointerdown', () => { this.scene.start('seleccion');  this.musicbackground.stop();} );
+      this.add.image(timeText.x,timeText.y+11,'madera').setScale(0.2,0.5).setAlpha(0.01)
+      .setInteractive().on('pointerdown', () => { this.scene.start('seleccion');  this.musicbackground.stop();} );
 
-      scoreText.setInteractive();
-      scoreText.on('pointerdown', () => {this.scene.start('info');  this.musicbackground.stop();});
+      this.add.image(scoreText.x,timeText.y+61,'madera').setScale(0.8,0.5).setAlpha(0.01)
+      .setInteractive().on('pointerdown', () => {this.scene.start('info');  this.musicbackground.stop();});
 
-      creditosText.setInteractive();
-      creditosText.on('pointerdown', () => {this.scene.start('creditos'); this.musicbackground.stop();})
+      this.add.image(creditosText.x,creditosText.y+11,'madera').setScale(0.2,0.5).setAlpha(0.01)
+      .setInteractive().on('pointerdown', () => {this.scene.start('creditos'); this.musicbackground.stop();})
     }
 }

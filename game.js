@@ -1,7 +1,11 @@
 var config = {
     type: Phaser.AUTO,
-    width: 1000,
-    height: 900,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 1280,
+        height: 720,
+        },
      
     pixelArt: true,
     physics: {
@@ -14,10 +18,11 @@ var config = {
     },
     
     ////la importante es la primera, que es la que arranca
-    scene: [Scene1, Scene3, Scene2, Scene4, Scene5, Scene6, Scene7, Scene8, Scene9,]
+    scene: [cargapan, Scene1, Scene3, Scene2, Scene4, Scene5, Scene6, Scene7, Scene8, Scene9]
 };
 
 var game = new Phaser.Game(config);
+
 
 var score;
 var gameOver;
@@ -75,3 +80,6 @@ var mv;
 var videofinal;
 var luz;
 var luzcont = 0;
+var virusc;
+var español = 0;
+var ingles = 0;

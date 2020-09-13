@@ -4,26 +4,28 @@ class Scene2 extends Phaser.Scene {
     constructor() {
       super('juego');
     }
-
+ ////NIVEL 1
     create ()
     {
 
         ////  FONDO Y PARALLAX
         
-        background=this.add.image(0, 0, 'sky').setScale(3);
+
+        background=this.add.image(0, 0, 'sky').setScale(9);
         background.setOrigin(0,0);
         background.setScrollFactor(1);
-        this.add.image(751, 130, 'sol').setScale(2).setScrollFactor(0.005);
+        this.add.image(751, 120, 'sol').setScale(1).setScrollFactor(0.005);
         nube = this.physics.add.staticGroup({
          key: 'nube',
          repeat: 40,
-         setXY: {x: 750, y:130, stepX:600}
+         setXY: {x: 750, y:210, stepX:600}
         });
         nube.children.iterate(function (child) { 
             child.setScale(3).refreshBody();
             child.setAlpha(0.8); 
             child.setScrollFactor(0.5)   
         });
+        
  
         ////  PISO
         platforms = this.physics.add.staticGroup();
@@ -35,12 +37,19 @@ class Scene2 extends Phaser.Scene {
         this.add.image(16000, 260, 'escuela').setScale(4);
         escuela = this.physics.add.image(16200, 100, 'escuela').setAlpha(0.001);  
         
+        ////perro
+        velociplayer = this.add.sprite(3700, 740, 'perro').setScale(0.2);
+        velociplayer.anims.play('perro', true)
+        
         ////Carteles
         this.add.image(1050, 696, 'cartel1,4').setScale(0.5);
         this.add.image(4050, 696, 'cartel1,1').setScale(0.5);
         this.add.image(7540, 696, 'cartel800').setScale(0.5);
         this.add.image(10700, 696, 'cartel500').setScale(0.5);
         this.add.image(13500, 696, 'cartel200').setScale(0.5);
+
+
+        
      
         
         // !PLAYER
@@ -54,6 +63,7 @@ class Scene2 extends Phaser.Scene {
             player.anims.play('rightf', true);
             player.setCollideWorldBounds(false);
         };
+
         
         //+ OBSTÁCULOS
         basurero = this.physics.add.group({
@@ -85,7 +95,7 @@ class Scene2 extends Phaser.Scene {
             child.body.allowGravity = false;
         });
             
-
+        
         ////  Input Events
 
         cursor_spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -94,56 +104,31 @@ class Scene2 extends Phaser.Scene {
 
         //! VIRUS
         
-        virus = this.physics.add.group();
-        virus.create(-260,500, 'humovirus').anims.play('humovirus', true).setScale(5).setSize(0,0).setAlpha(0.2);
-        virus.create(-225,100, 'humovirus').anims.play('humovirus', true).setScale(5).setSize(0,0).setAlpha(0.3);
-        virus.create(-230,800, 'humovirus').anims.play('humovirus', true).setScale(5).setSize(0,0).setAlpha(0.5);
-        virus.create(120, 100, 'v1').anims.play('v1', true);
-        virus.create(115, 200, 'v4').anims.play('v4', true);
-        virus.create(160, 300, 'v3').anims.play('v3', true);
-        virus.create(98, 400, 'v6').anims.play('v6', true);
-        virus.create(90, 500, 'v5').anims.play('v5', true);
-        virus.create(100, 600, 'v2').anims.play('v2', true);
-        virus.create(140, 700, 'v1').anims.play('v1', true);
-        virus.create(130, 800, 'v6').anims.play('v6', true);
-        virus.create(15, 112, 'v2').anims.play('v2', true);
-        virus.create(60, 222, 'v5').anims.play('v5', true);
-        virus.create(50, 278, 'v3').anims.play('v3', true);
-        virus.create(23, 388, 'v1').anims.play('v1', true);
-        virus.create(15, 513, 'v6').anims.play('v6', true);
-        virus.create(30, 590, 'v4').anims.play('v4', true);
-        virus.create(14, 712, 'v3').anims.play('v3', true);
-        virus.create(26, 780, 'v6').anims.play('v6', true);
-        virus.create(-172, 100, 'v1').anims.play('v1', true);
-        virus.create(-160, 200, 'v4').anims.play('v4', true);
-        virus.create(-160, 300, 'v3').anims.play('v3', true);
-        virus.create(-165, 400, 'v6').anims.play('v6', true);
-        virus.create(-165, 500, 'v5').anims.play('v5', true);
-        virus.create(-160, 600, 'v2').anims.play('v2', true);
-        virus.create(-168, 700, 'v1').anims.play('v1', true);
-        virus.create(-158, 800, 'v6').anims.play('v6', true);
-        virus.create(-60, 92, 'v3').anims.play('v3', true);
-        virus.create(-75, 196, 'v6').anims.play('v6', true);
-        virus.create(-46, 278, 'v2').anims.play('v2', true);
-        virus.create(-66, 388, 'v4').anims.play('v4', true);
-        virus.create(-85, 513, 'v1').anims.play('v1', true);
-        virus.create(-72, 590, 'v5').anims.play('v5', true);
-        virus.create(-82, 712, 'v2').anims.play('v2', true);
-        virus.create(-66, 780, 'v4').anims.play('v4', true);
+        virusc = new Virusclass ({scene: this});
+        /*var tween = this.tweens.add({
+        targets: virusc,
+        x: 400,
+        ease: 'Power1',
+        duration: 1000,
+        yoyo: true,
+        repeat: -1,
+        });*/
         
-        virus.children.iterate(function (child){
-            child.body.allowGravity = false;
-            child.body.immovable = true;
-            child.setVelocityX(160);
-        });
-        
+        ////PAUSA
+        this.add.image(155, 70, 'pausa').setOrigin(0,0).setScrollFactor(0).setScale(-0.35)
+        .setInteractive().on('pointerdown', ()=> {if (pausacont=== 0){pausacont = 1; this.pausa();}});
+
+
+        ////SALTO
+        this.add.image(50, 600, 'botsalto').setOrigin(0,0).setScrollFactor(0).setScale(0.5)
+        .setInteractive().on('pointerdown',()=> {this.saltar()});
         
         ////madera
-        this.add.image(0,0, 'madera').setOrigin(0,0).setScrollFactor(0);
+        this.add.image(160,20 , 'madera').setOrigin(0,0).setScrollFactor(0);
 
 
         //// SCORE
-        scoreText = this.add.bitmapText(320, -2, 'pixel', 'PUNTAJE: 0',50).setTint(0x000000);
+        scoreText = this.add.bitmapText(320, 21, 'pixel', 'PUNTAJE: 0',50).setTint(0x000000);
         scoreText.setScrollFactor(0);
         
 
@@ -202,13 +187,7 @@ class Scene2 extends Phaser.Scene {
         ////salto
 
         if (Phaser.Input.Keyboard.JustDown(cursor_spacebar)&& player.body.touching.down && perdiste == 0){
-            player.setVelocityY(-500);
-            this.jump.play();
-            if(seleccion === 'nene'){
-                player.anims.play('playerjumpn',true).on('animationcomplete', () => {player.anims.play('rightn', true);});
-            }else if(seleccion === 'nena') {
-             player.anims.play('saltonena',true).on('animationcomplete', () => {player.anims.play('rightf', true);});
-            }
+           this.saltar();
         };
 
         ////pausa 
@@ -220,6 +199,7 @@ class Scene2 extends Phaser.Scene {
     
        
     }
+  
 
     pausa(){
 
@@ -254,7 +234,7 @@ class Scene2 extends Phaser.Scene {
         scoreText.setText('PUNTAJE: ' + puntos);
         
     }
-    hitplatforms2 (player, virus)
+    hitplatforms2 ()
     {
         this.gameOver()
         this.selecsound.play();
@@ -274,14 +254,14 @@ class Scene2 extends Phaser.Scene {
 
         player.setTint(0x659b1a);
      
-        this.add.image(player.x,500, 'pausafondo').setScale(1.5).setAlpha(0.8);
-        this.add.bitmapText(player.x-150,300, 'pixel', 'PERDISTE', 70).setTint(0xd10d06);
-        var gameOverButton = this.add.bitmapText(player.x+200,500, 'pixel', 'Continuar', 50).setTint(0xffffff)
+        this.add.image(player.x,550, 'pausafondo').setScale(2).setAlpha(0.7);
+        this.add.bitmapText(player.x-180,400, 'pixel', 'PERDISTE', 70).setTint(0xd10d06);
+        var gameOverButton = this.add.bitmapText(player.x-280,500, 'pixel', 'Continuar', 50).setTint(0xffffff)
         .setInteractive()
         .on('pointerdown', () =>  {pausacont = 0;this.scene.start('puntos')});
         
         
-        Phaser.Display.Align.In.Center(gameOverButton, this.add.zone(player.x+200,500));
+        Phaser.Display.Align.In.Center(gameOverButton, this.add.zone(player.x+25,550));
         
     }
     reiniciar() {
@@ -298,6 +278,16 @@ class Scene2 extends Phaser.Scene {
         puntos = 0;
         this.scene.start('inicio');
         perdiste = 0;
+    }
+    saltar(){
+        if(player.body.touching.down && perdiste === 0){
+            player.setVelocityY(-500);
+            this.jump.play();
+            if(seleccion === 'nene'){
+                 player.anims.play('playerjumpn',true).on('animationcomplete', () => {player.anims.play('rightn', true);});
+                }else if(seleccion === 'nena') {
+                player.anims.play('saltonena',true).on('animationcomplete', () => {player.anims.play('rightf', true);});
+        }   }
     }
 }   
     

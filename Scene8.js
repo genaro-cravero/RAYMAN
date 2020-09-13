@@ -99,52 +99,10 @@ class Scene8 extends Phaser.Scene{
         
         //! VIRUS
 
-        virus = this.physics.add.group();
-        virus.create(-260,500, 'humovirus').anims.play('humovirus', true).setScale(5).setSize(0,0);
-        virus.create(-225,100, 'humovirus').anims.play('humovirus', true).setScale(5).setSize(0,0);
-        virus.create(-230,800, 'humovirus').anims.play('humovirus', true).setScale(5).setSize(0,0);
-        virus.create(120, 100, 'v1').anims.play('v1', true);
-        virus.create(115, 200, 'v4').anims.play('v4', true);
-        virus.create(160, 300, 'v3').anims.play('v3', true);
-        virus.create(98, 400, 'v6').anims.play('v6', true);
-        virus.create(90, 500, 'v5').anims.play('v5', true);
-        virus.create(100, 600, 'v2').anims.play('v2', true);
-        virus.create(140, 700, 'v1').anims.play('v1', true);
-        virus.create(130, 800, 'v6').anims.play('v6', true);
-        virus.create(15, 112, 'v2').anims.play('v2', true);
-        virus.create(60, 222, 'v5').anims.play('v5', true);
-        virus.create(50, 278, 'v3').anims.play('v3', true);
-        virus.create(23, 388, 'v1').anims.play('v1', true);
-        virus.create(15, 513, 'v6').anims.play('v6', true);
-        virus.create(30, 590, 'v4').anims.play('v4', true);
-        virus.create(14, 712, 'v3').anims.play('v3', true);
-        virus.create(26, 780, 'v6').anims.play('v6', true);
-        virus.create(-172, 100, 'v1').anims.play('v1', true);
-        virus.create(-160, 200, 'v4').anims.play('v4', true);
-        virus.create(-160, 300, 'v3').anims.play('v3', true);
-        virus.create(-165, 400, 'v6').anims.play('v6', true);
-        virus.create(-165, 500, 'v5').anims.play('v5', true);
-        virus.create(-160, 600, 'v2').anims.play('v2', true);
-        virus.create(-168, 700, 'v1').anims.play('v1', true);
-        virus.create(-158, 800, 'v6').anims.play('v6', true);
-        virus.create(-60, 92, 'v3').anims.play('v3', true);
-        virus.create(-75, 196, 'v6').anims.play('v6', true);
-        virus.create(-46, 278, 'v2').anims.play('v2', true);
-        virus.create(-66, 388, 'v4').anims.play('v4', true);
-        virus.create(-85, 513, 'v1').anims.play('v1', true);
-        virus.create(-72, 590, 'v5').anims.play('v5', true);
-        virus.create(-82, 712, 'v2').anims.play('v2', true);
-        virus.create(-66, 780, 'v4').anims.play('v4', true);
-        
-        virus.children.iterate(function (child){
-            child.body.allowGravity = false;
-            child.body.immovable = true;
-        });
-        
-        
+        virusc = new Virusclass ({scene: this});
         
         ////madera
-        this.add.image(0,0, 'madera').setOrigin(0,0).setScrollFactor(0);
+        this.add.image(160,0, 'madera').setOrigin(0,0).setScrollFactor(0);
 
 
         //// SCORE
@@ -171,7 +129,7 @@ class Scene8 extends Phaser.Scene{
         ////COLLIDERS y OVERLAPS
 
         this.physics.add.collider(player, platformescu);
-        this.physics.add.collider(player, virus, this.hitplatforms2, null, this);
+        this.physics.add.collider(player, virusc, this.hitplatforms2, null, this);
         this.physics.add.collider(player, basurero);
         this.physics.add.overlap(player, powerup, this.powerup, null, this);
         this.physics.add.overlap(player, mochila, this.agualenta, null, this);
