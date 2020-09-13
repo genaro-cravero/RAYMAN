@@ -29,8 +29,10 @@ class Scene2 extends Phaser.Scene {
  
         ////  PISO
         platforms = this.physics.add.staticGroup();
-        platforms.create(0, 830, 'ground');
-        platforms.create(14792,830, 'ground');
+        platforms.create(0, 835, 'ground');
+        platforms.create(4930,835, 'ground');
+        platforms.create(9860,835, 'ground');
+        platforms.create(14790,835, 'ground');
        
         //// ESCUELA
         
