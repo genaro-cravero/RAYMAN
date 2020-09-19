@@ -4,6 +4,10 @@ class Scene1 extends Phaser.Scene {
     }
 
     create() {
+      var video;
+      
+      
+      //this.video.addToWorld();
 
       ////musica principal
      
@@ -171,6 +175,9 @@ class Scene1 extends Phaser.Scene {
       creditosText = scoreText = new Texto({
         scene:this,x:640, y:660, int:[2] , int2:32, color:0xecd313  
       })
+      /*this.video=this.add.video(500, 100, 'prueba')
+      this.video.loop=true;
+      this.video.play(true);*/
       
       //// Interacciones con escenas
       this.add.image(timeText.x,timeText.y+11,'madera').setScale(0.2,0.5).setAlpha(0.01)

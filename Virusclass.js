@@ -4,7 +4,7 @@ class Virusclass extends Phaser.Physics.Arcade.Sprite{
         config.scene.add.existing(this);
         config.scene.physics.add.existing(this);
 
-        virus = config.scene.physics.add.group();
+        virus = this.physics.add.group();
 
         
         virus.create(-260,500, 'humovirus').anims.play('humovirus', true).setScale(5).setSize(50,50).setAlpha(0.2);

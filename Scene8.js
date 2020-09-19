@@ -7,17 +7,17 @@ class Scene8 extends Phaser.Scene{
 
         ////  FONDO Y PARALLAX
         
-        nube=this.add.image(0, 0, 'cielo3').setScale(3);
+        nube=this.add.image(0, 0, 'cielo3').setScale(9);
         nube.setOrigin(0,0);
         nube.setScrollFactor(0);
 
-        paralax3=this.add.image(0, 0, 'paralax3').setScale(3);
+        paralax3=this.add.image(0, 0, 'paralax3').setScale(9);
         paralax3.setOrigin(0,0);
         paralax3.setScrollFactor(0.18);
 
      
 
-        background=this.add.image(0, 0, 'fondo3').setScale(3);
+        background=this.add.image(0, 0, 'fondo3').setScale(9);
         background.setOrigin(0,0);
         background.setScrollFactor(1);
 
@@ -25,7 +25,7 @@ class Scene8 extends Phaser.Scene{
 
         ////  PISO
         platformescu = this.physics.add.staticGroup();
-        platformescu.create(0, 830, 'ground2').setScale(4).setAlpha(0.01);
+        platformescu.create(0, 830, 'ground2').setScale(4).setAlpha(0.01).refreshBody();
         platformescu.create(6904,830, 'ground2').setScale(4).setAlpha(0.01);
         platformescu.create(13807,830, 'ground2').setScale(4).setAlpha(0.01);
         platformescu.create(20711,830, 'ground2').setScale(4).setAlpha(0.01);
@@ -99,7 +99,63 @@ class Scene8 extends Phaser.Scene{
         
         //! VIRUS
 
-        virusc = new Virusclass ({scene: this});
+        virus = this.physics.add.group();
+
+        
+        virus.create(-260,500, 'humovirus').anims.play('humovirus', true).setScale(5).setSize(50,50).setAlpha(0.2);
+        virus.create(-225,100, 'humovirus').anims.play('humovirus', true).setScale(5).setSize(50,50).setAlpha(0.3);
+        virus.create(-230,800, 'humovirus').anims.play('humovirus', true).setScale(5).setSize(50,50).setAlpha(0.5);
+        virus.create(120, 100, 'v1').anims.play('v1', true);
+        virus.create(115, 200, 'v4').anims.play('v4', true);
+        virus.create(160, 300, 'v3').anims.play('v3', true);
+        virus.create(98, 400, 'v6').anims.play('v6', true);
+        virus.create(90, 500, 'v5').anims.play('v5', true);
+        virus.create(100, 600, 'v2').anims.play('v2', true);
+        virus.create(140, 700, 'v1').anims.play('v1', true);
+        virus.create(130, 800, 'v6').anims.play('v6', true);
+        virus.create(15, 112, 'v2').anims.play('v2', true);
+        virus.create(60, 222, 'v5').anims.play('v5', true);
+        virus.create(50, 278, 'v3').anims.play('v3', true);
+        virus.create(23, 388, 'v1').anims.play('v1', true);
+        virus.create(15, 513, 'v6').anims.play('v6', true);
+        virus.create(30, 590, 'v4').anims.play('v4', true);
+        virus.create(14, 712, 'v3').anims.play('v3', true);
+        virus.create(26, 780, 'v6').anims.play('v6', true);
+        virus.create(-172, 100, 'v1').anims.play('v1', true);
+        virus.create(-160, 200, 'v4').anims.play('v4', true);
+        virus.create(-160, 300, 'v3').anims.play('v3', true);
+        virus.create(-165, 400, 'v6').anims.play('v6', true);
+        virus.create(-165, 500, 'v5').anims.play('v5', true);
+        virus.create(-160, 600, 'v2').anims.play('v2', true);
+        virus.create(-168, 700, 'v1').anims.play('v1', true);
+        virus.create(-158, 800, 'v6').anims.play('v6', true);
+        virus.create(-60, 92, 'v3').anims.play('v3', true);
+        virus.create(-75, 196, 'v6').anims.play('v6', true);
+        virus.create(-46, 278, 'v2').anims.play('v2', true);
+        virus.create(-66, 388, 'v4').anims.play('v4', true);
+        virus.create(-85, 513, 'v1').anims.play('v1', true);
+        virus.create(-72, 590, 'v5').anims.play('v5', true);
+        virus.create(-82, 712, 'v2').anims.play('v2', true);
+        virus.create(-66, 780, 'v4').anims.play('v4', true);
+
+        
+        virus.children.iterate(function (child){
+            child.body.allowGravity = false;
+            child.body.immovable = true;
+            child.setVelocityX(160);
+            
+            
+        
+        });
+
+         ////Mobile PAUSA
+         this.add.image(155, 70, 'pausa').setOrigin(0,0).setScrollFactor(0).setScale(-0.35)
+         .setInteractive().on('pointerdown', ()=> {if (pausacont=== 0){pausacont = 1; this.pausa();}});
+ 
+ 
+         ////Mobile SALTO
+         this.add.image(50, 600, 'botsalto').setOrigin(0,0).setScrollFactor(0).setScale(0.5)
+         .setInteractive().on('pointerdown',()=> {this.saltar()});
         
         ////madera
         this.add.image(160,0, 'madera').setOrigin(0,0).setScrollFactor(0);
@@ -129,7 +185,7 @@ class Scene8 extends Phaser.Scene{
         ////COLLIDERS y OVERLAPS
 
         this.physics.add.collider(player, platformescu);
-        this.physics.add.collider(player, virusc, this.hitplatforms2, null, this);
+        this.physics.add.collider(player, virus, this.hitplatforms2, null, this);
         this.physics.add.collider(player, basurero);
         this.physics.add.overlap(player, powerup, this.powerup, null, this);
         this.physics.add.overlap(player, mochila, this.agualenta, null, this);
@@ -180,14 +236,8 @@ class Scene8 extends Phaser.Scene{
         }
 
         //// salto
-        if (Phaser.Input.Keyboard.JustDown(cursor_spacebar)&& player.body.touching.down && perdiste ===0){
-            player.setVelocityY(-500);
-            this.jump.play();
-            if(seleccion === 'nene'){
-                player.anims.play('playerjumpn',true).on('animationcomplete', () => {player.anims.play('rightn', true);});
-            }else if(seleccion === 'nena') {
-            player.anims.play('saltonena',true).on('animationcomplete', () => {player.anims.play('rightf', true);});
-            }
+       if (Phaser.Input.Keyboard.JustDown(cursor_spacebar)&& player.body.touching.down && perdiste == 0){
+           this.saltar();
         };
 
         ////Virus volador
@@ -251,8 +301,10 @@ class Scene8 extends Phaser.Scene{
             child.body.immovable = true;
             child.setSize(85,75).setOffset(85,0)
             child.setVelocityX(-160);
-            child.setInteractive().on('pointerdown', () => {child.setSize(0,0); child.anims.play('vx',true)
-            .on('animationcomplete',() => {child.destroy();})});
+            child.setInteractive().on('pointerdown', () => {
+                if (pausacont === 0){
+            child.setSize(0,0); child.anims.play('vx',true)
+            .on('animationcomplete',() => {child.destroy();})}});
         });
 
 
@@ -357,6 +409,16 @@ class Scene8 extends Phaser.Scene{
         
         
         
+    }
+    saltar(){
+        if(player.body.touching.down && perdiste === 0 && pausacont===0){
+            player.setVelocityY(-500);
+            this.jump.play();
+            if(seleccion === 'nene'){
+                 player.anims.play('playerjumpn',true).on('animationcomplete', () => {player.anims.play('rightn', true);});
+                }else if(seleccion === 'nena') {
+                player.anims.play('saltonena',true).on('animationcomplete', () => {player.anims.play('rightf', true);});
+        }   }
     }
 
     

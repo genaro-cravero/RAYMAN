@@ -17,7 +17,7 @@ selecnena = this.physics.add.sprite(990,375, 'nena').setScale(9).setSize(32,60);
 selecnena.body.allowGravity = false;
 selecnena.anims.play('selecnena', true);
 selecnena.setInteractive();
-selecnena.on('pointerdown', () => {seleccion = 'nena', this.selecsound.play(); this.scene.start('juego2');} );
+selecnena.on('pointerdown', () => {seleccion = 'nena', this.selecsound.play(); this.scene.start('juego3');} );
 
 
 

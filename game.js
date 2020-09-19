@@ -80,6 +80,5 @@ var mv;
 var videofinal;
 var luz;
 var luzcont = 0;
-var virusc;
 var español = 0;
 var ingles = 0;

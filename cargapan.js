@@ -21,6 +21,7 @@ class cargapan extends Phaser.Scene{
 
 
       this.load.image('logo', 'assets/logo.png');
+      ///this.load.video('prueba', 'assets/pruebavid.mp4','loadeddata', false, true);
       this.load.image('pausa', 'assets/stop.png' )
       this.load.image('botsalto', 'assets/jump.png' )
       this.load.image('arbusto', 'assets/arbusto.png')
